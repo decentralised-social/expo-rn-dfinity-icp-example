@@ -1,3 +1,38 @@
+diff --git a/node_modules/@dfinity/agent/lib/cjs/actor.js b/node_modules/@dfinity/agent/lib/cjs/actor.js
+index 9aa4c75..4686379 100644
+--- a/node_modules/@dfinity/agent/lib/cjs/actor.js
++++ b/node_modules/@dfinity/agent/lib/cjs/actor.js
+@@ -186,17 +186,19 @@ function _createActorMethod(actor, methodName, func) {
+             if (!response.ok) {
+                 throw new UpdateCallRejectedError(cid, methodName, requestId, response);
+             }
+-            const pollStrategy = pollingStrategyFactory();
+-            const responseBytes = await polling_1.pollForResponse(agent, ecid, requestId, pollStrategy);
+-            if (responseBytes !== undefined) {
+-                return decodeReturnValue(func.retTypes, responseBytes);
+-            }
+-            else if (func.retTypes.length === 0) {
+-                return undefined;
+-            }
+-            else {
+-                throw new Error(`Call was returned undefined, but type [${func.retTypes.join(',')}].`);
+-            }
++
++            return undefined
++            // const pollStrategy = pollingStrategyFactory();
++            // const responseBytes = await polling_1.pollForResponse(agent, ecid, requestId, pollStrategy);
++            // if (responseBytes !== undefined) {
++            //     return decodeReturnValue(func.retTypes, responseBytes);
++            // }
++            // else if (func.retTypes.length === 0) {
++            //     return undefined;
++            // }
++            // else {
++            //     throw new Error(`Call was returned undefined, but type [${func.retTypes.join(',')}].`);
++            // }
+         };
+     }
+     const handler = (...args) => caller({}, ...args);
 diff --git a/node_modules/@dfinity/agent/lib/cjs/agent/http/index.js b/node_modules/@dfinity/agent/lib/cjs/agent/http/index.js
 index 1ae0e0b..1da9ca7 100644
 --- a/node_modules/@dfinity/agent/lib/cjs/agent/http/index.js
@@ -906,7 +941,7 @@ index 3a8d799..854c0da 100644
          ]);
          if (!response.ok) {
 diff --git a/node_modules/@dfinity/agent/lib/esm/vendor/bls/bls.js b/node_modules/@dfinity/agent/lib/esm/vendor/bls/bls.js
-index eddb431..f903d4f 100644
+index eddb431..c0ca69e 100644
 --- a/node_modules/@dfinity/agent/lib/esm/vendor/bls/bls.js
 +++ b/node_modules/@dfinity/agent/lib/esm/vendor/bls/bls.js
 @@ -1,820 +1,22 @@

@@ -5,7 +5,9 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import { Text, View, SafeAreaView } from '../components/Themed'
+import { Text, View, SafeAreaView, useThemeColor } from '../components/Themed'
+import Colors from '../constants/Colors'
+import useColorScheme from '../hooks/useColorScheme'
 import { getBackendActor } from '../lib/actor'
 
 const styles = StyleSheet.create({
@@ -17,6 +19,8 @@ const styles = StyleSheet.create({
 export default function HomeScreen({ navigation }: any) {
   const [counter, setCounter] = useState(0)
   const [loading, setLoading] = useState(true)
+  const theme = useColorScheme()
+  const color = Colors[theme].text
 
   const load = async () => {
     try {
@@ -35,7 +39,7 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {loading ? <ActivityIndicator /> : <View>
+      {loading ? <ActivityIndicator color={color} size="large" /> : <View>
         <Text>counter value in canister: {counter}</Text>
       </View>}
 
